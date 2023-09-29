@@ -81,7 +81,7 @@ static PyObject *SignalIntercept_call(
         return NULL;
 
     Py_BEGIN_ALLOW_THREADS
-    ap_log_error(APLOG_MARK, APLOG_WARNING, 0, wsgi_server,
+    ap_log_error(APLOG_MARK, APLOG_INFO, 0, wsgi_server,
                  "mod_wsgi (pid=%d): Callback registration for "
                  "signal %d ignored.", getpid(), n);
     Py_END_ALLOW_THREADS
@@ -98,7 +98,7 @@ static PyObject *SignalIntercept_call(
             PyObject *args = NULL;
             PyObject *result = NULL;
             Py_INCREF(o);
-            log = newLogObject(NULL, APLOG_WARNING, NULL, 0);
+            log = newLogObject(NULL, APLOG_INFO, NULL, 0);
             args = Py_BuildValue("(OOO)", Py_None, Py_None, log);
             result = PyObject_CallObject(o, args);
             Py_XDECREF(result);
